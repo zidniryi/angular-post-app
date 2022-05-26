@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
+import { PostsService } from './posts/posts.service';
 
 @NgModule({
   // define dectlatarcion for the components that are part of the module
@@ -31,6 +32,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
     MatToolbarModule,
     MatExpansionModule,
   ],
+  // providers: [PostsService], You can inject like this or @Inject anotation/decoerator
   providers: [],
   bootstrap: [AppComponent],
 })
