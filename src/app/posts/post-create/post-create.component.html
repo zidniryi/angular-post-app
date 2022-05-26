@@ -3,10 +3,36 @@
 <!-- <textarea cols="30" rows="6" [value]="newPost" #postInput></textarea> -->
 
 <!-- Two Way Binding -->
-<textarea cols="30" rows="6" [(ngModel)]="enteredValue"></textarea>
-
-<hr />
-<!-- Event Binding For Property -->
-<button class="btn btn-primary" (click)="onAddPost()">Save Post</button>
-<!-- String Interpolation || Template String -->
-<p>{{ newPost }}</p>
+<form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <mat-card>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Title"
+        ngModel
+        name="title"
+        type="text"
+        required
+        minlength="3"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please enter title</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        placeholder="Body"
+        matInput
+        cols="30"
+        rows="6"
+        ngModel
+        name="content"
+        required
+        minlength="3"
+        #content="ngModel"
+      ></textarea>
+      <mat-error *ngIf="content.invalid">Please enter content</mat-error>
+    </mat-form-field>
+    <!-- Event Binding For Property -->
+    <button color="primary" mat-raised-button type="submit">Save Post</button>
+  </mat-card>
+</form>

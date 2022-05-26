@@ -1,0 +1,12 @@
+<mat-accordion *ngIf="posts.length > 0; else elseBlock">
+  <mat-expansion-panel *ngFor="let post of posts">
+    <mat-expansion-panel-header>
+      <b>{{ post.title }}</b>
+    </mat-expansion-panel-header>
+    <p>{{ post.content }}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<ng-template #elseBlock
+  ><p class="info-text mat-body-1">No post here!</p></ng-template
+>
