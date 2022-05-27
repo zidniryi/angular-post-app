@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Post } from './post.model';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
@@ -15,7 +16,8 @@ export class PostsService {
   //  Kenapa pakai ini karena kalau tidak harus emmit ke banyak file
   // kita bisa langsung inject ke constructor
 
-  constructor(private http: HttpClient) {}
+  // Inject HTTP, and Route Loader
+  constructor(private http: HttpClient, private router: Router) {}
 
   // Type <<>>
   // Subscribe Data, Err, Complete kayak Try catch
@@ -45,7 +47,9 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return { ...this.posts.find((p) => p.id === id) };
+    return this.http.get<{ _id: string; title: string; content: string }>(
+      `http://localhost:3000/api/posts/${id}`
+    );
   }
 
   addPost(title: string, content: string) {
@@ -60,8 +64,10 @@ export class PostsService {
         post.id = id;
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
+        this.router.navigate(['/']);
       });
   }
+
   updatePost(id: string, title: string, content: string) {
     const post: Post = { id: id, title: title, content: content };
     this.http
@@ -76,6 +82,7 @@ export class PostsService {
         // Locally
         this.posts = updatedPosts;
         this.postsUpdated.next([...this.posts]);
+        this.router.navigate(['/']);
       });
   }
 

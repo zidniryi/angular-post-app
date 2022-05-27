@@ -13,16 +13,18 @@ export class PostListComponent implements OnInit {
   // @Input() posts: Array<Post> = []; //If not using @Input() then we can use this
   posts: Array<Post> = [];
   postSub: Subscription = new Subscription();
+  isLoading: boolean = false;
 
   constructor(public postsService: PostsService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.postsService.getPosts();
     // Subscribe
     this.postSub = this.postsService
       .getPostUpdateListener()
       .subscribe((posts: Array<Post>) => {
-        console.log(posts);
+        this.isLoading = false;
         this.posts = posts;
       });
   }
