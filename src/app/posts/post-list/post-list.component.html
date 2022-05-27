@@ -6,7 +6,9 @@
     <p>{{ post.content }}</p>
     <mat-action-row>
       <button color="primary" mat-button type="submit">EDIT</button>
-      <button color="warn" mat-button type="submit">DELETE</button>
+      <button color="warn" mat-button type="submit" (click)="onDelete(post.id)">
+        DELETE
+      </button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
