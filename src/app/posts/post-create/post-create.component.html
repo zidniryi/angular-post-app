@@ -3,13 +3,13 @@
 <!-- <textarea cols="30" rows="6" [value]="newPost" #postInput></textarea> -->
 
 <!-- Two Way Binding -->
-<form (submit)="onAddPost(postForm)" #postForm="ngForm">
+<form (submit)="onSavePost(postForm)" #postForm="ngForm">
   <mat-card>
     <mat-form-field>
       <input
         matInput
         placeholder="Title"
-        ngModel
+        [ngModel]="post.title"
         name="title"
         type="text"
         required
@@ -24,7 +24,7 @@
         matInput
         cols="30"
         rows="6"
-        ngModel
+        [ngModel]="post.content"
         name="content"
         required
         minlength="3"
