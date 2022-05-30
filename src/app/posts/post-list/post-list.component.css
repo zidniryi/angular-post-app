@@ -11,3 +11,12 @@
 .mat-spinner {
   margin: auto;
 }
+
+.post-image {
+  width: 100%;
+}
+
+.post-image,
+img {
+  border-radius: 20px;
+}

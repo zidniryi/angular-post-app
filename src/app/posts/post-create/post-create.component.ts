@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Post } from '../post.model';
 
 import { PostsService } from '../posts.service';
@@ -27,21 +27,18 @@ export class PostCreateComponent implements OnInit {
     public route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)],
       }),
-      content: new FormControl(null, {
-        validators: [Validators.required, Validators.minLength(3)],
-      }),
+      content: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType],
       }),
     });
-    this.route.paramMap.subscribe((paramMap) => {
-      // postId from routing params
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
@@ -52,10 +49,12 @@ export class PostCreateComponent implements OnInit {
             id: postData._id,
             title: postData.title,
             content: postData.content,
+            imagePath: postData.imagePath,
           };
-          this.form?.setValue({
+          this.form.setValue({
             title: this.post.title,
             content: this.post.content,
+            image: this.post.imagePath,
           });
         });
       } else {
@@ -76,14 +75,16 @@ export class PostCreateComponent implements OnInit {
     if (this.mode === 'create') {
       this.postsService.addPost(
         this.form?.value.title,
-        this.form?.value.content
+        this.form?.value.content,
+        this.form?.value.image
       );
       this.form?.reset();
     } else {
       this.postsService.updatePost(
         this.postId,
         this.form?.value.title,
-        this.form?.value.content
+        this.form?.value.content,
+        this.form?.value.image
       );
     }
   }
