@@ -4,6 +4,10 @@ ul {
   margin: 0%;
 }
 
+ul {
+  display: flex;
+}
+
 li,
 a {
   color: #fff;

@@ -1,0 +1,38 @@
+<!-- Property Binding -->
+<!-- Local reference '#postInput' -->
+<!-- <textarea cols="30" rows="6" [value]="newPost" #postInput></textarea> -->
+<mat-card>
+  <!-- Two Way Binding -->
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form *ngIf="!isLoading" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+    <mat-form-field>
+      <input
+        type="email"
+        name="email"
+        #emailInput="ngModel"
+        ngModel
+        id=""
+        placeholder="E-mail"
+        matInput
+        required
+      />
+      <mat-error *ngIf="emailInput.invalid">
+        Please input valid email</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Password"
+        type="password"
+        ngModel
+        #passwordInput="ngModel"
+        name="password"
+        required
+      />
+      <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
+    </mat-form-field>
+    <!-- Event Binding For Property -->
+    <button color="primary" mat-raised-button type="submit">Login</button>
+  </form>
+</mat-card>
