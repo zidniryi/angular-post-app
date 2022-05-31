@@ -20,3 +20,7 @@
 img {
   border-radius: 20px;
 }
+
+mat-paginator {
+  margin-top: 1rem;
+}
