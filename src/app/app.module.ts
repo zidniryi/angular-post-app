@@ -18,6 +18,7 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   // define dectlatarcion for the components that are part of the module
@@ -27,6 +28,7 @@ import { LoginComponent } from './auth/login/login.component';
     PostListComponent,
     HeaderComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

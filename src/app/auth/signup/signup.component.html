@@ -4,7 +4,7 @@
 <mat-card>
   <!-- Two Way Binding -->
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form *ngIf="!isLoading" (submit)="onLogin(signupForm)" #signupForm="ngForm">
+  <form *ngIf="!isLoading" (submit)="onSignUp(signupForm)" #signupForm="ngForm">
     <mat-form-field>
       <input
         type="email"
@@ -33,6 +33,6 @@
       <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
     </mat-form-field>
     <!-- Event Binding For Property -->
-    <button color="primary" mat-raised-button type="submit">Login</button>
+    <button color="primary" mat-raised-button type="submit">Sign Up</button>
   </form>
 </mat-card>
