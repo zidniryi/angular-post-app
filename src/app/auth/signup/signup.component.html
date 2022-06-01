@@ -33,6 +33,8 @@
       <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
     </mat-form-field>
     <!-- Event Binding For Property -->
-    <button color="primary" mat-raised-button type="submit">Sign Up</button>
+    <button color="primary" mat-raised-button type="submit" *ngIf="!isLoading">
+      Sign Up
+    </button>
   </form>
 </mat-card>

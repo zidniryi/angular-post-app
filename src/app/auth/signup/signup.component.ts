@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +10,14 @@ import { NgForm } from '@angular/forms';
 export class SignupComponent {
   isLoading: boolean = false;
 
+  // Inject that can service can directly used by the component
+  constructor(public authService: AuthService) {}
+
   onSignUp(form: NgForm) {
-    console.log(form.form.value);
+    if (form.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    this.authService.createUser(form.value.email, form.value.password);
   }
 }

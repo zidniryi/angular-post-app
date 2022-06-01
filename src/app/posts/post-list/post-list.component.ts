@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
@@ -13,18 +14,24 @@ import { PostsService } from '../posts.service';
 export class PostListComponent implements OnInit {
   // @Input() posts: Array<Post> = []; //If not using @Input() then we can use this
   posts: Array<Post> = [];
-  postSub: Subscription = new Subscription();
   isLoading: boolean = false;
   totalPosts: number = 0;
   postsPerPage: number = 2;
   pageSizeOptions = [1, 2, 5, 10];
   currentPage: number = 1;
+  userIsAuthenticated = false;
+  postSub: Subscription = new Subscription();
+  private authStatusSub: Subscription = new Subscription();
 
-  constructor(public postsService: PostsService) {}
+  constructor(
+    public postsService: PostsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.postsService.getPosts(this.postsPerPage, this.currentPage);
+
     // Subscribe
     this.postSub = this.postsService
       .getPostUpdateListener()
@@ -32,6 +39,12 @@ export class PostListComponent implements OnInit {
         this.isLoading = false;
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
+      });
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe((isAuthenticated) => {
+        this.userIsAuthenticated = isAuthenticated;
       });
   }
 
@@ -44,6 +57,7 @@ export class PostListComponent implements OnInit {
 
   ngOnDestroy() {
     this.postSub.unsubscribe();
+    this.authStatusSub.unsubscribe();
   }
 
   // Handling pagination
