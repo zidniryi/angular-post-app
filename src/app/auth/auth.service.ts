@@ -99,7 +99,6 @@ export class AuthService {
         },
         (error) => {
           this.authStatusListener.next(false);
-          alert(error.error.message || 'Something wrong');
         }
       );
   }
