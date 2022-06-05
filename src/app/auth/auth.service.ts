@@ -62,7 +62,7 @@ export class AuthService {
       },
       (error) => {
         this.authStatusListener.next(false);
-        alert('Email Or Password Already Used By');
+        // alert('Email Or Password Already Used By');
       }
     );
   }
