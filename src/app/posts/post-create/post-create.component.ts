@@ -50,7 +50,9 @@ export class PostCreateComponent implements OnInit {
             title: postData.title,
             content: postData.content,
             imagePath: postData.imagePath,
+            creator: postData.creator,
           };
+          console.log(postData, 'COk');
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
