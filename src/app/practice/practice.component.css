@@ -1,0 +1,25 @@
+.sky {
+  color: white;
+  background-color: lightblue;
+  padding: 20px;
+  font-family: "Courier New";
+}
+.tomato {
+  background-color: coral;
+  padding: 40px;
+  font-family: Verdana;
+}
+
+ul {
+  display: inline;
+  list-style-type: none;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  box-shadow: #ccc;
+}

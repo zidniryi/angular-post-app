@@ -1,0 +1,44 @@
+<h1 [ngClass]="isClass ? 'sky' : 'tomato'">NGCLASS!</h1>
+<button (click)="onClickClass()" mat-stroked-button>Class Clicked</button>
+<br />
+<br />
+<div *ngIf="isIf">
+  <button (click)="onNgIf()" mat-stroked-button>NG IF</button>
+</div>
+<div *ngIf="!isIf">
+  <button (click)="onNgIf()" mat-card-subtitle>NG IF</button>
+</div>
+<br />
+<br />
+<h1>NG FOR</h1>
+<div mat-card-content>
+  <ul *ngFor="let car of dataCar; let indexOfelement = index">
+    <ul>
+      <li>{{ indexOfelement + 1 }} {{ car.name }}</li>
+    </ul>
+  </ul>
+</div>
+<br />
+<h1>NG Style</h1>
+<div [style.color]="isClass ? 'red' : 'blue'">
+  <h1>Hello</h1>
+  <button (click)="onClickClass()" mat-stroked-button>Class Clicked</button>
+</div>
+<br />
+
+<div mat-card-avatar>
+  <h1 mat-dialog-title>ngSwitch Example</h1>
+  <div class="card-body">
+    Input string :
+    <input type="text" [(ngModel)]="num" matInput />
+
+    <div [ngSwitch]="num">
+      <div *ngSwitchCase="'1'">One</div>
+      <div *ngSwitchCase="'2'">Two</div>
+      <div *ngSwitchCase="'3'">Three</div>
+      <div *ngSwitchCase="'4'">Four</div>
+      <div *ngSwitchCase="'5'">Five</div>
+      <div *ngSwitchDefault>This is Default</div>
+    </div>
+  </div>
+</div>
