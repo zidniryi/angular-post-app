@@ -14,7 +14,6 @@ import { ErrorComponent } from './error/errror.component';
 import { PracticeComponent } from './practice/practice.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
-import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   // define dectlatarcion for the components that are part of the module
@@ -31,7 +30,7 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     AngularMaterialModule,
     PostsModule,
-    AuthModule,
+    FormsModule,
   ],
   // providers: [PostsService], You can inject like this or @Inject anotation/decoerator
   providers: [
